@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片左右无缝滚动效果</title>
+</head>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	body{
+		background-color: #ccc;
+	}
+	img{
+		border: none;
+	}
+	.tggg{
+		width: 1188px !important;
+		margin: 0 auto;
+		width: 100%;
+		padding: 25px 0;
+		font-size: 0;
+		clear: both;
+	}
+	.tggg_ks{
+		-webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        padding: 10px 1px;
+        width: 100%;
+        border: solid #8ac024 1px;
+        position: relative;
+        overflow: hidden;
+	}
+	.tggg_ks_1{
+		height: 140px;
+		overflow: hidden;
+		margin: 0 auto;
+		width: 1120px;
+	}
+	.tggg_zuojian{
+		left: 4px;
+		background: url("img/arrow-left.png") no-repeat 50%;
+	}
+	.tggg_zuojian:hover{
+		background: url("img/arrow-left-hover.png") no-repeat;
+	}
+	.tggg_youjian{
+		right: 4px;
+		background: url("img/arrow-right.png") no-repeat 50%;
+	}
+	.tggg_youjian:hover{
+		background: url("img/arrow-right-hover.png") no-repeat;
+	}
+	.tggg_jiantou{
+		width: 15px;
+		height: 26px;
+		cursor: pointer;
+		text-indent: -999px;
+		position: absolute;
+		top: 50%;
+		margin-top: -13px;
+	}
+	.tggg_ks_2{
+		width: 5000px;
+		height: 170px;
+		margin-left: -10px; 
+		display: inline-block;
+		line-height: 0;
+	}
+	.theatre-item{
+		width: 170px;
+		overflow: hidden;
+		transition: all 0.7s cubic-bezier(0.46,0.98,0.54,1.1);
+		-webkit-transition: all .7s cubic-bezier(.46,.98,.54,1.1);
+        -moz-transition: all .7s cubic-bezier(.46,.98,.54,1.1);
+        -o-transition:all .7s cubic-bezier(.46,.98,.54,1.1);
+        float: left;
+        margin: 0 10px;
+        background-color: #fff;
+        cursor: pointer;
+	}
+	.theatre-expand{
+		width: 930px;
+	}
+	.theatre-left{
+		float: left;
+		width: 170px;
+	}
+	.theatre-left img{
+		width: 100%;
+		display: block;
+	}
+	.theatre-poster{
+		height: 100%
+	}
+    .theatre-logo{
+    	height: 40px;
+    }
+    .theatre-right{
+    	float: left;
+    	margin-left: 20px;
+    }
+    .theatre-banner{
+    opacity: 0;
+    transition: all .7s cubic-bezier(.46,.98,.54,1.1);
+    -webkit-transition: all .7s cubic-bezier(.46,.98,.54,1.1);
+    -moz-transition: all .7s cubic-bezier(.46,.98,.54,1.1);
+    -o-transition:all .7s cubic-bezier(.46,.98,.54,1.1);
+    width: 740px;
+    display:block;
+    }
+
+	.aa{
+	    width:930px;
+	    z-index:100;
+	}
+	.aa .theatre-banner{
+	    opacity:1;
+	}
+	.bb{
+	    width:0px;
+	    margin:0px;
+	}
+</style>
+<body>
+	<div class="tggg">
+		<div class="tggg_ks">
+			<div class="tggg_ks_1">
+				<div class="tggg_zuojian tggg_jiantou" id="tggg_zuojian"></div>
+				<div class="tggg_ks_2" id="limitbuy">
+					<ul class="products">
+						<li class="theatre-item tggg1">
+							<a href="#">
+								<div class="theatre-expand">
+									<div class="theatre-left">
+										<img src="img/tggg1-1.jpg" alt="" class="theatre-poster">
+										<img src="img/tggg2-1.jpg" alt="" class="theatre-logo">
+									</div>
+									<div class="theatre-right">
+										<img src="img/tggg1-1_1.jpg" alt="" class="theatre-banner">
+									</div>
+								</div>
+							</a>
+						</li>
+						<li class="theatre-item tggg1">
+							<a href="#">
+								<div class="theatre-expand">
+									<div class="theatre-left">
+										<img src="img/tggg1-1.jpg" alt="" class="theatre-poster">
+										<img src="img/tggg2-1.jpg" alt="" class="theatre-logo">
+									</div>
+									<div class="theatre-right">
+										<img src="img/tggg1-1_1.jpg" alt="" class="theatre-banner">
+									</div>
+								</div>
+							</a>
+						</li>
+						<li class="theatre-item tggg1">
+							<a href="#">
+								<div class="theatre-expand">
+									<div class="theatre-left">
+										<img src="img/tggg1-1.jpg" alt="" class="theatre-poster">
+										<img src="img/tggg2-1.jpg" alt="" class="theatre-logo">
+									</div>
+									<div class="theatre-right">
+										<img src="img/tggg1-1_1.jpg" alt="" class="theatre-banner">
+									</div>
+								</div>
+							</a>
+						</li>
+						<li class="theatre-item tggg1">
+							<a href="#">
+								<div class="theatre-expand">
+									<div class="theatre-left">
+										<img src="img/tggg1-1.jpg" alt="" class="theatre-poster">
+										<img src="img/tggg2-1.jpg" alt="" class="theatre-logo">
+									</div>
+									<div class="theatre-right">
+										<img src="img/tggg1-1_1.jpg" alt="" class="theatre-banner">
+									</div>
+								</div>
+							</a>
+						</li>
+						<li class="theatre-item tggg1">
+							<a href="#">
+								<div class="theatre-expand">
+									<div class="theatre-left">
+										<img src="img/tggg1-1.jpg" alt="" class="theatre-poster">
+										<img src="img/tggg2-1.jpg" alt="" class="theatre-logo">
+									</div>
+									<div class="theatre-right">
+										<img src="img/tggg1-1_1.jpg" alt="" class="theatre-banner">
+									</div>
+								</div>
+							</a>
+						</li>
+						<li class="theatre-item tggg1">
+							<a href="#">
+								<div class="theatre-expand">
+									<div class="theatre-left">
+										<img src="img/tggg1-1.jpg" alt="" class="theatre-poster">
+										<img src="img/tggg2-1.jpg" alt="" class="theatre-logo">
+									</div>
+									<div class="theatre-right">
+										<img src="img/tggg1-1_1.jpg" alt="" class="theatre-banner">
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+					<ul class="products">
+						<li class="theatre-item tggg2">
+							<a href="#">
+								<div class="theatre-expand">
+									<div class="theatre-left">
+										<img src="img/tggg1-2.jpg" alt="" class="theatre-poster">
+										<img src="img/tggg2-2.jpg" alt="" class="theatre-logo">
+									</div>
+									<div class="theatre-right">
+										<img src="img/tggg1-1_2.jpg" alt="" class="theatre-banner">
+									</div>
+								</div>
+							</a>
+						</li>
+						<li class="theatre-item tggg2">
+							<a href="#">
+								<div class="theatre-expand">
+									<div class="theatre-left">
+										<img src="img/tggg1-2.jpg" alt="" class="theatre-poster">
+										<img src="img/tggg2-2.jpg" alt="" class="theatre-logo">
+									</div>
+									<div class="theatre-right">
+										<img src="img/tggg1-1_2.jpg" alt="" class="theatre-banner">
+									</div>
+								</div>
+							</a>
+						</li>
+						<li class="theatre-item tggg2">
+							<a href="#">
+								<div class="theatre-expand">
+									<div class="theatre-left">
+										<img src="img/tggg1-2.jpg" alt="" class="theatre-poster">
+										<img src="img/tggg2-2.jpg" alt="" class="theatre-logo">
+									</div>
+									<div class="theatre-right">
+										<img src="img/tggg1-1_2.jpg" alt="" class="theatre-banner">
+									</div>
+								</div>
+							</a>
+						</li>
+						<li class="theatre-item tggg2">
+							<a href="#">
+								<div class="theatre-expand">
+									<div class="theatre-left">
+										<img src="img/tggg1-2.jpg" alt="" class="theatre-poster">
+										<img src="img/tggg2-2.jpg" alt="" class="theatre-logo">
+									</div>
+									<div class="theatre-right">
+										<img src="img/tggg1-1_2.jpg" alt="" class="theatre-banner">
+									</div>
+								</div>
+							</a>
+						</li>
+						<li class="theatre-item tggg2">
+							<a href="#">
+								<div class="theatre-expand">
+									<div class="theatre-left">
+										<img src="img/tggg1-2.jpg" alt="" class="theatre-poster">
+										<img src="img/tggg2-2.jpg" alt="" class="theatre-logo">
+									</div>
+									<div class="theatre-right">
+										<img src="img/tggg1-1_2.jpg" alt="" class="theatre-banner">
+									</div>
+								</div>
+							</a>
+						</li>
+						<li class="theatre-item tggg2">
+							<a href="#">
+								<div class="theatre-expand">
+									<div class="theatre-left">
+										<img src="img/tggg1-2.jpg" alt="" class="theatre-poster">
+										<img src="img/tggg2-2.jpg" alt="" class="theatre-logo">
+									</div>
+									<div class="theatre-right">
+										<img src="img/tggg1-1_2.jpg" alt="" class="theatre-banner">
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+					<ul class="products">
+						<li class="theatre-item tggg3">
+							<a href="#">
+								<div class="theatre-expand">
+									<div class="theatre-left">
+										<img src="img/tggg1-3.jpg" alt="" class="theatre-poster">
+										<img src="img/tggg2-3.jpg" alt="" class="theatre-logo">
+									</div>
+									<div class="theatre-right">
+										<img src="img/tggg1-1_3.jpg" alt="" class="theatre-banner">
+									</div>
+								</div>
+							</a>
+						</li>
+						<li class="theatre-item tggg3">
+							<a href="#">
+								<div class="theatre-expand">
+									<div class="theatre-left">
+										<img src="img/tggg1-3.jpg" alt="" class="theatre-poster">
+										<img src="img/tggg2-3.jpg" alt="" class="theatre-logo">
+									</div>
+									<div class="theatre-right">
+										<img src="img/tggg1-1_3.jpg" alt="" class="theatre-banner">
+									</div>
+								</div>
+							</a>
+						</li>
+						<li class="theatre-item tggg3">
+							<a href="#">
+								<div class="theatre-expand">
+									<div class="theatre-left">
+										<img src="img/tggg1-3.jpg" alt="" class="theatre-poster">
+										<img src="img/tggg2-3.jpg" alt="" class="theatre-logo">
+									</div>
+									<div class="theatre-right">
+										<img src="img/tggg1-1_3.jpg" alt="" class="theatre-banner">
+									</div>
+								</div>
+							</a>
+						</li>
+						<li class="theatre-item tggg3">
+							<a href="#">
+								<div class="theatre-expand">
+									<div class="theatre-left">
+										<img src="img/tggg1-3.jpg" alt="" class="theatre-poster">
+										<img src="img/tggg2-3.jpg" alt="" class="theatre-logo">
+									</div>
+									<div class="theatre-right">
+										<img src="img/tggg1-1_3.jpg" alt="" class="theatre-banner">
+									</div>
+								</div>
+							</a>
+						</li>
+						<li class="theatre-item tggg3">
+							<a href="#">
+								<div class="theatre-expand">
+									<div class="theatre-left">
+										<img src="img/tggg1-3.jpg" alt="" class="theatre-poster">
+										<img src="img/tggg2-3.jpg" alt="" class="theatre-logo">
+									</div>
+									<div class="theatre-right">
+										<img src="img/tggg1-1_3.jpg" alt="" class="theatre-banner">
+									</div>
+								</div>
+							</a>
+						</li>
+						<li class="theatre-item tggg3">
+							<a href="#">
+								<div class="theatre-expand">
+									<div class="theatre-left">
+										<img src="img/tggg1-3.jpg" alt="" class="theatre-poster">
+										<img src="img/tggg2-3.jpg" alt="" class="theatre-logo">
+									</div>
+									<div class="theatre-right">
+										<img src="img/tggg1-1_3.jpg" alt="" class="theatre-banner">
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+					<ul class="products">
+					<li class="theatre-item tggg4">
+						<a href="">
+							<div class="theatre-expand">
+								<div class="theatre-left">
+									<img class="theatre-poster" src="img/tggg1-4.jpg">
+									<img class="theatre-logo" src="img/tggg2-4.jpg">
+								</div>
+								<div class="theatre-right">
+									<img class="theatre-banner" src="img/tggg1-1_4.jpg">
+								</div>
+							</div>
+						</a>
+					</li>
+					<li class="theatre-item tggg4">
+						<a href="">
+							<div class="theatre-expand">
+								<div class="theatre-left">
+									<img class="theatre-poster" src="img/tggg1-4.jpg">
+									<img class="theatre-logo" src="img/tggg2-4.jpg">
+								</div>
+								<div class="theatre-right">
+									<img class="theatre-banner" src="img/tggg1-1_4.jpg">
+								</div>
+							</div>
+						</a>
+					</li>
+					<li class="theatre-item tggg4">
+						<a href="">
+							<div class="theatre-expand">
+								<div class="theatre-left">
+									<img class="theatre-poster" src="img/tggg1-4.jpg">
+									<img class="theatre-logo" src="img/tggg2-4.jpg">
+								</div>
+								<div class="theatre-right">
+									<img class="theatre-banner" src="img/tggg1-1_4.jpg">
+								</div>
+							</div>
+						</a>
+					</li>
+					<li class="theatre-item tggg4">
+						<a href="">
+							<div class="theatre-expand">
+								<div class="theatre-left">
+									<img class="theatre-poster" src="img/tggg1-4.jpg">
+									<img class="theatre-logo" src="img/tggg2-4.jpg">
+								</div>
+								<div class="theatre-right">
+									<img class="theatre-banner" src="img/tggg1-1_4.jpg">
+								</div>
+							</div>
+						</a>
+					</li>
+					<li class="theatre-item tggg4">
+						<a href="">
+							<div class="theatre-expand">
+								<div class="theatre-left">
+									<img class="theatre-poster" src="img/tggg1-4.jpg">
+									<img class="theatre-logo" src="img/tggg2-4.jpg">
+								</div>
+								<div class="theatre-right">
+									<img class="theatre-banner" src="img/tggg1-1_4.jpg">
+								</div>
+							</div>
+						</a>
+					</li>
+					<li class="theatre-item tggg4">
+						<a href="">
+							<div class="theatre-expand">
+								<div class="theatre-left">
+									<img class="theatre-poster" src="img/tggg1-4.jpg">
+									<img class="theatre-logo" src="img/tggg2-4.jpg">
+								</div>
+								<div class="theatre-right">
+									<img class="theatre-banner" src="img/tggg1-1_4.jpg">
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+				</div>
+				<div class="tggg_youjian tggg_jiantou" id="tggg_youjian"></div>
+			</div>
+		</div>
+	</div>
+	<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+	<script>
+		$(function(){
+			var lb_cur=1;
+			var t=1;
+			function showLimitBuyProducts(){
+				if(lb_cur<1){
+					lb_cur=4;
+				}
+				else if(lb_cur>4){
+					lb_cur=1;
+				}
+				var products=$("#limitbuy .products").hide().eq(lb_cur-1).show();
+			}
+
+			$("#tggg_zuojian").click(function(){
+				lb_cur--;
+				showLimitBuyProducts();
+			});
+
+			$("#tggg_youjian").click(function(){
+				lb_cur++;
+				showLimitBuyProducts();
+			});
+
+            $(".theatre-item").mouseover(function(){
+            	if($(this).index()==5){
+            		$(this).addClass('aa');
+            		$(this).siblings().addClass('bb');
+            		$(this).siblings().eq(0).removeClass('bb');
+            	}else{
+            		$(this).addClass('aa');
+            		$(this).siblings().addClass('bb');
+            		$(this).next().attr('class','theatre-item');
+            	}
+            });
+            $(".theatre-item").mouseout(function(){
+            	$(this).attr('class','theatre-item');
+            	$(this).siblings().removeClass('bb');
+            });
+		})
+	</script>
+</body>
+</html>
